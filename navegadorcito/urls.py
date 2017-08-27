@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^teacher/courses', courses_teacher),
     url(r'^teacher/', login_teacher),
     
-    url(r'^admin/', login_admin),
+   # url(r'^admin/', login_admin),
 ]
