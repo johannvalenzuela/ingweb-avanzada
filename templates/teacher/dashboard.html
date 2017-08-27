@@ -1,6 +1,18 @@
 {% extends 'base/dashboard.html' %} 
+
+{% block sidenav %}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link active" href="/teacher/dashboard">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/teacher/courses">Cursos</a>
+    </li>
+</ul>
+{% endblock %} 
+
 {% block content %}
-<h1>Dashboard</h1>
+<h1>Bienvenido profesor</h1>
 
 <section class="row text-center placeholders">
     <div class="col-6 col-sm-3 placeholder">

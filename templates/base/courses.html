@@ -1,0 +1,25 @@
+{% for courses %}
+<div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Semestre</th>
+                    <th>Año</th>
+                    <th>Paralelo</th>
+                    <th>Asignatura</th>
+                    <th>Profesores</th>
+                    <th>Alumnos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for courses in course %}
+                <tr>
+                    <td>{% course.semester %}</td>
+                    <td>{% course.year %}</td>
+                    <td>{% course.parallel %}</td>
+                    <td>Ver</td>
+                    <td>Ver</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
