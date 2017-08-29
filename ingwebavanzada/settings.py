@@ -55,7 +55,11 @@ ROOT_URLCONF = 'ingwebavanzada.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [],
+=======
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+>>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

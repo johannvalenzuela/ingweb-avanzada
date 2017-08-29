@@ -9,6 +9,10 @@ class Student(models.Model):
     first_name_student = models.CharField(max_length=40)
     last_name_student = models.CharField(max_length=40)
     phone_student = models.IntegerField()
+<<<<<<< HEAD
+=======
+    user = models.OneToOneField(User)
+>>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
 
 @receiver(post_save, sender=User)
 def create_user_student(sender, instance, created, **kwargs):
@@ -25,6 +29,10 @@ class Teacher(models.Model):
     last_name_teacher = models.CharField(max_length=40)
     rut_teacher = models.CharField(max_length=15)
     phone_teacher = models.IntegerField()
+<<<<<<< HEAD
+=======
+    user = models.OneToOneField(User)
+>>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
 
 @receiver(post_save, sender=User)
 def create_user_teacher(sender, instance, created, **kwargs):
@@ -41,6 +49,10 @@ class Admin(models.Model):
     last_name_admin = models.CharField(max_length=40)
     rut_admin = models.CharField(max_length=15)
     phone_admin = models.IntegerField()
+<<<<<<< HEAD
+=======
+    user = models.OneToOneField(User)
+>>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
 
 @receiver(post_save, sender=User)
 def create_user_admin(sender, instance, created, **kwargs):
