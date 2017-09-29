@@ -8,60 +8,39 @@ class Student(models.Model):
     rut_student = models.CharField(max_length=15)
     first_name_student = models.CharField(max_length=40)
     last_name_student = models.CharField(max_length=40)
-    phone_student = models.IntegerField()
-<<<<<<< HEAD
-=======
-    user = models.OneToOneField(User)
->>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
+    phone_student = models.CharField(max_length=15)
+    email_student = models.CharField(max_length=30)
+    address_student = models.CharField(max_length=30)
+    password_student = models.CharField(max_length=20)  
 
-@receiver(post_save, sender=User)
-def create_user_student(sender, instance, created, **kwargs):
-    if created:
-        Student.object.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_student(sender, instance, **kwargs):
-    instance.student.save()
+    def __str__(self):
+        return self.rut_student
 
 # PROFESOR
 class Teacher(models.Model):
     first_name_teacher = models.CharField(max_length=40)
     last_name_teacher = models.CharField(max_length=40)
     rut_teacher = models.CharField(max_length=15)
-    phone_teacher = models.IntegerField()
-<<<<<<< HEAD
-=======
-    user = models.OneToOneField(User)
->>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
+    phone_teacher = models.CharField(max_length=15)
+    email_teacher = models.CharField(max_length=30)
+    address_teacher = models.CharField(max_length=30)
+    password_teacher = models.CharField(max_length=20)
 
-@receiver(post_save, sender=User)
-def create_user_teacher(sender, instance, created, **kwargs):
-    if created:
-        Teacher.object.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_teacher(sender, instance, **kwargs):
-    instance.teacher.save()
+    def __str__(self):
+        return self.rut_teacher
 
 # ADMINISTRADOR
 class Admin(models.Model):
     first_name_admin = models.CharField(max_length=40)
     last_name_admin = models.CharField(max_length=40)
     rut_admin = models.CharField(max_length=15)
-    phone_admin = models.IntegerField()
-<<<<<<< HEAD
-=======
-    user = models.OneToOneField(User)
->>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
+    phone_admin = models.CharField(max_length=15)
+    address_admin = models.CharField(max_length=30)
+    password_admin = models.CharField(max_length=20)
+    email_admin = models.CharField(max_length=30)
 
-@receiver(post_save, sender=User)
-def create_user_admin(sender, instance, created, **kwargs):
-    if created:
-        Admin.object.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_admin(sender, instance, **kwargs):
-    instance.admin.save()
+    def __str__(self):
+        return self.rut_admin
 
 # CARRERA
 class Career(models.Model):
@@ -76,6 +55,7 @@ class Career(models.Model):
 # MALLA
 class Programme(models.Model):
     career = models.ForeignKey(Career)
+    enrolled = models.ManyToManyField(Student,through='Enrolled')
     name_program = models.CharField(max_length=40)
     description_program = models.CharField(max_length=40)
     state_program = models.CharField(max_length=20)
@@ -84,6 +64,16 @@ class Programme(models.Model):
     def __str__(self):
         return self.name_program
 
+# MATRICULA
+class Enrolled(models.Model):
+    idStudent = models.ForeignKey(Student)
+    idProgramme = models.ForeignKey(Programme)
+    year = models.IntegerField()
+    period = models.IntegerField()
+
+    def __str__(self):
+        return str(self.idStudent)+" "+str(self.idProgramme)
+
 # ASIGNATURA
 class Signature(models.Model):
     key_signature = models.CharField(max_length=8)
@@ -91,7 +81,6 @@ class Signature(models.Model):
     name_signature = models.CharField(max_length=40)
     description_signature = models.CharField(max_length=40)
     
-
     def __str__(self):
         return self.name_signature
 
@@ -103,74 +92,30 @@ class Instance_Signature(models.Model):
     semester = models.IntegerField()
     name_instance_signature = models.CharField(max_length=40)
     slot_signature = models.IntegerField()
-    teacher = models.ManyToManyField(Teacher, through='List_Teacher')
+    list_teacher = models.ManyToManyField(Teacher, through='Teacher-Signature')
+    inscription = models.ManyToManyField(Student, through='Inscription')
     
     def __str__(self):
-        return self.name_intance_signature
+        return self.name_instance_signature
 
-# MATRICULA
-class Enrolled(models.Model):
-    career = models.ForeignKey(Career)
-    year = models.IntegerField()
-    # Semestre
-    period = models.IntegerField()
-    student = models.ManyToManyField(Student,through='List_Student_Enrolled')
-    instance_signature = models.ManyToManyField(Instance_Signature,through='List_Signature_Enrolled')
-    name_enroll = models.CharField(max_length=40)
-    description_enroll = models.CharField(max_length=40)
-    state_enroll = models.CharField(max_length=40)
-
-    def __str__(self):
-        return self.name_enroll
-
-# LISTA ESTUDIANTES MATRICULADOS
-class List_Student_Enrolled(models.Model):
-    idStudent = models.ForeignKey(Student)
-    idEnrroled = models.ForeignKey(Enrolled)
-
-    def __str__(self):
-        return str(self.idStudent.rut_student)+" "+str(self.idEnrroled.name_enroll)
-
-# LISTA ASIGNATURAS MATRICULA
-class List_Signature_Enrolled(models.Model):
-    idInstance_Signature = models.ForeignKey(Instance_Signature)
-    idEnrroled = models.ForeignKey(Enrolled)
-
-    def __str__(self):
-        return str(self.idInstance_Signature.name_instance_signature)+" "+str(self.idEnrroled.name_enroll)
-
-# LISTA ASIGNATURAS
-class List_Teacher(models.Model):
-    idInstance_Signature = models.ForeignKey(Instance_Signature)
+#LISTA ASIGNATURAS PROFESOR
+class Teacher_Signature(models.Model):
     idTeacher = models.ForeignKey(Teacher)
-
+    idInstance_Signature = models.ForeignKey(Instance_Signature)
+       
     def __str__(self):
-        return str(self.idTeacher.name_teacher)+" "+str(self.idInstance_Signature.name_instance_signature)
+       return str(self.idTeacher)+" "+str(self.idInstance_Signature)
+   
 
 # INSCRIPCION ASIGNATURA
 class Inscription(models.Model):
-    intance_signature = models.ManyToManyField(Instance_Signature, through='List_Inscription_Instance_Signature')
-    student = models.ManyToManyField(Student, through='List_Student')
+    idStudent = models.ForeignKey(Student)
+    idInstance_Signature = models.ForeignKey(Instance_Signature)
     name_inscription = models.CharField(max_length=40)
     description_inscription = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.name_inscription
-
-# LISTA INSCRIPCION ASIGNATURA
-class List_Inscription_Instance_Signature(models.Model):
-    idInstance_Signature = models.ForeignKey(Instance_Signature)
-    idInscription = models.ForeignKey(Inscription)
-
-    def __str__(self):
-        return str(self.idInscription.name_inscription)+" "+str(self.idInstance_Signature.name_instance_signature)
-
-class List_Student(models.Model):
-    idStudent = models.ForeignKey(Student)
-    idInscription = models.ForeignKey(Inscription)
-
-    def __str__(self):
-        return str(self.idInscription.name_inscription)+" "+str(self.idStudent.rut_student)
+       return str(self.idStudent)+" "+str(self.idInstance_Signature)
 
 # ESTADO INSCRIPCION
 class Status_Inscription(models.Model):
@@ -180,4 +125,5 @@ class Status_Inscription(models.Model):
 
     def __str__(self):
         return self.name_status
+
 

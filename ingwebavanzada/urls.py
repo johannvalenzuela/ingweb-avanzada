@@ -17,11 +17,6 @@ from django.conf.urls import url,include
 from django.contrib import admin
 
 urlpatterns = [
-<<<<<<< HEAD
-    url(r'^admin/', admin.site.urls),
-   # url(r'^', include('navegadorcito.urls')),
-=======
    # url(r'^admin/', admin.site.urls),
    url(r'^', include('navegadorcito.urls')),
->>>>>>> 05b7afe2fd1d0b6e643016aee856b86e60eef1f4
 ]

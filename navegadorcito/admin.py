@@ -7,15 +7,12 @@ entities = [
      Admin,
      Career,
      Programme,
+     Enrolled,
      Signature,
      Instance_Signature,
-     Enrolled,
-     List_Student_Enrolled,
-     List_Signature_Enrolled,
-     List_Teacher,
+     Teacher_Signature,
      Inscription,
-     List_Inscription_Instance_Signature,
-     List_Student,
-     Status_Inscription]
+     Status_Inscription
+    ]
 
 admin.site.register(entities)
