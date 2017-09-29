@@ -11,7 +11,9 @@ urlpatterns = [
     url(r'^admin/', login_admin),
     url(r'^teacher/dashboard', dashboard_teacher),
     url(r'^teacher/courses', courses_teacher),
+    url(r'^teacher/asignature/(?P<pk>[0-9]+)/$', asignature_detail, name='asignature_detail'),
     url(r'^teacher/', login_teacher),
+    
     
    # url(r'^admin/', login_admin),
 ]
