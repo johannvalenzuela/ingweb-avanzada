@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^student/courses', courses_student),
     url(r'^student/', login_student),
     url(r'^admin/dashboard', dashboard_admin),
-    url(r'^admin/', login_admin),
+ #   url(r'^admin/', login_admin),
     url(r'^teacher/dashboard', dashboard_teacher),
     url(r'^teacher/courses', courses_teacher),
     url(r'^teacher/asignature/(?P<pk>[0-9]+)/$', asignature_detail, name='asignature_detail'),

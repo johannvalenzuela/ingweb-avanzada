@@ -55,7 +55,7 @@ class Career(models.Model):
 # MALLA
 class Programme(models.Model):
     career = models.ForeignKey(Career)
-    enrolled = models.ManyToManyField(Student,through='Enrolled')
+    enrolleds = models.ManyToManyField(Student,through='Enrolled')
     name_program = models.CharField(max_length=40)
     description_program = models.CharField(max_length=40)
     state_program = models.CharField(max_length=20)
@@ -66,14 +66,15 @@ class Programme(models.Model):
 
 # MATRICULA
 class Enrolled(models.Model):
-    idStudent = models.ForeignKey(Student)
-    idProgramme = models.ForeignKey(Programme)
+    idStudent = models.ForeignKey(Student, null=True)
+    idProgramme = models.ForeignKey(Programme, null=True)
     year = models.IntegerField()
     period = models.IntegerField()
 
     def __str__(self):
         return str(self.idStudent)+" "+str(self.idProgramme)
 
+""" 
 # ASIGNATURA
 class Signature(models.Model):
     key_signature = models.CharField(max_length=8)
@@ -83,6 +84,8 @@ class Signature(models.Model):
     
     def __str__(self):
         return self.name_signature
+    
+
 
 #INSTANCIA ASIGNATURA
 class Instance_Signature(models.Model):
@@ -102,7 +105,7 @@ class Instance_Signature(models.Model):
 class Teacher_Signature(models.Model):
     idTeacher = models.ForeignKey(Teacher)
     idInstance_Signature = models.ForeignKey(Instance_Signature)
-       
+
     def __str__(self):
        return str(self.idTeacher)+" "+str(self.idInstance_Signature)
    
@@ -127,3 +130,4 @@ class Status_Inscription(models.Model):
         return self.name_status
 
 
+"""

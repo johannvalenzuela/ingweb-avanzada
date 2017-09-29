@@ -8,11 +8,11 @@ entities = [
      Career,
      Programme,
      Enrolled,
-     Signature,
-     Instance_Signature,
-     Teacher_Signature,
-     Inscription,
-     Status_Inscription
+     #Signature,
+     #Instance_Signature,
+     #Teacher_Signature,
+     #Inscription,
+     #Status_Inscription
     ]
 
 admin.site.register(entities)

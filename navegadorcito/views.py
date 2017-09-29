@@ -6,8 +6,8 @@ def index(request):
 
     return render(request, 'index.html', {})
 
-def login_admin(request):
-    return render(request, 'admin/login.html', {})
+#def login_admin(request):
+#    return render(request, 'admin/login.html', {})
 
 def login_teacher(request):
     return render(request, 'teacher/login.html', {})
