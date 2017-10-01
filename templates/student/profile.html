@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!--<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">-->
+
+
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/css/dashboard.css">
 </head>
@@ -48,11 +48,11 @@
             <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
                 <div class="jumbotron">
                     <div class="container">
-                        <h1 class="display-3">Roberto Rojas</h1>
-                        <p>This is a template for a simple marketing or informational website. It includes a large callout called
-                            a jumbotron and three supporting pieces of content. Use it as a starting point to create something
-                            more unique.</p>
-                        <p><a class="btn btn-primary btn-lg" href="#" role="button">Editar</a></p>
+                        <h1 class="display-3">{{student.first_name_student}} {{student.last_name_student}} </h1>
+                        <h2>RUT: {{student.rut_student}} </h2>
+                        <h2>Telefono: {{student.phone_student}} </h2>
+                        <h2>Email: {{student.email_student}} </h2>
+                        <h2>Direccion: {{student.address_student}} </h2>
                     </div>
                 </div>
                 <h1>Perfil</h1>

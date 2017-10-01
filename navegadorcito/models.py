@@ -74,7 +74,6 @@ class Enrolled(models.Model):
     def __str__(self):
         return str(self.idStudent)+" "+str(self.idProgramme)
 
-""" 
 # ASIGNATURA
 class Signature(models.Model):
     key_signature = models.CharField(max_length=8)
@@ -95,16 +94,16 @@ class Instance_Signature(models.Model):
     semester = models.IntegerField()
     name_instance_signature = models.CharField(max_length=40)
     slot_signature = models.IntegerField()
-    list_teacher = models.ManyToManyField(Teacher, through='Teacher-Signature')
-    inscription = models.ManyToManyField(Student, through='Inscription')
+    list_teacher = models.ManyToManyField(Teacher, through='Teacher_Signature')
+    inscriptions = models.ManyToManyField(Student, through='Inscription')
     
     def __str__(self):
         return self.name_instance_signature
 
 #LISTA ASIGNATURAS PROFESOR
 class Teacher_Signature(models.Model):
-    idTeacher = models.ForeignKey(Teacher)
-    idInstance_Signature = models.ForeignKey(Instance_Signature)
+    idTeacher = models.ForeignKey(Teacher, null=True)
+    idInstance_Signature = models.ForeignKey(Instance_Signature, null=True)
 
     def __str__(self):
        return str(self.idTeacher)+" "+str(self.idInstance_Signature)
@@ -129,5 +128,3 @@ class Status_Inscription(models.Model):
     def __str__(self):
         return self.name_status
 
-
-"""

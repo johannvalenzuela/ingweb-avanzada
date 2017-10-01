@@ -20,22 +20,22 @@
             <thead>
                 <tr>
                     <th>Sigla</th>
+                    <th>Nombre</th>
                     <th>Paralelo</th>
                     <th>Año</th>
-                    <th>Semestre</th>
-                    <th>Nombre</th>
+                    <th>Descripción</th>
                     <th>Ficha</th>
                 </tr>
             </thead>
             <tbody>
                 {% for signature in signature_list %}
                 <tr>
-                    <th scope="row">{% signature.key_signature %}</th>
-                    <td>{% signature.parallel %}</td>
-                    <td>{% signature.year %}</td>
-                    <td>{% signature.semester %}</td>
-                    <td>{% signature.name_signature %}</td>
-                    <td><a href="{% url 'signature_detail' pk=signature.id %}">{{ signature.id }}</a></td>
+                    <th scope="row">{{ signature.key_signature}}</th>
+                    <td>{{signature.name_signature }}</td>
+                    <td>{{ signature.idInstance_Signature }}</td>
+                    <td>{{ signature.name_inscription }}</td>
+                    <td>{{ signature.description_signature }}</td>
+                    <td><a href="">{{ signature.id }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
