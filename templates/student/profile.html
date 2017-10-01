@@ -1,99 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+{% extends 'base/dashboard.html' %} {% block sidenav %}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Perfil</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Asignaturas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Cerrar sesión</a>
+    </li>
+</ul>
 
-
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/css/dashboard.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Navegadorcito</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Asignaturas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cerrar sesión</a>
-                    </li>
-                </ul>
-
-            </nav>
-
-            <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-                <div class="jumbotron">
-                    <div class="container">
-                        <h1 class="display-3">{{student.first_name_student}} {{student.last_name_student}} </h1>
-                        <h2>RUT: {{student.rut_student}} </h2>
-                        <h2>Telefono: {{student.phone_student}} </h2>
-                        <h2>Email: {{student.email_student}} </h2>
-                        <h2>Direccion: {{student.address_student}} </h2>
-                    </div>
-                </div>
-                <h1>Perfil</h1>
-
-                <section class="row text-center placeholders">
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-                            alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <div class="text-muted">Something else</div>
-                    </div>
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-                            alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <span class="text-muted">Something else</span>
-                    </div>
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-                            alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <span class="text-muted">Something else</span>
-                    </div>
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-                            alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <span class="text-muted">Something else</span>
-                    </div>
-                </section>
-
-            </main>
-        </div>
+{% endblock %} {% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">{{student.first_name_student}} {{student.last_name_student}} </h1>
+        <h2>RUT: {{student.rut_student}} </h2>
+        <h2>Telefono: {{student.phone_student}} </h2>
+        <h2>Email: {{student.email_student}} </h2>
+        <h2>Direccion: {{student.address_student}} </h2>
     </div>
+</div>
+<h1>Perfil</h1>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-    <script src="../../static/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+<section class="row text-center placeholders">
+    <div class="col-6 col-sm-3 placeholder">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
+            alt="Generic placeholder thumbnail">
+        <h4>Label</h4>
+        <div class="text-muted">Something else</div>
+    </div>
+    <div class="col-6 col-sm-3 placeholder">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
+            alt="Generic placeholder thumbnail">
+        <h4>Label</h4>
+        <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-6 col-sm-3 placeholder">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
+            alt="Generic placeholder thumbnail">
+        <h4>Label</h4>
+        <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-6 col-sm-3 placeholder">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
+            alt="Generic placeholder thumbnail">
+        <h4>Label</h4>
+        <span class="text-muted">Something else</span>
+    </div>
+</section>
+{% endblock %}

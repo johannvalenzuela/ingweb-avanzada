@@ -1,0 +1,13 @@
+{% extends 'base/dashboard.html' %} 
+
+{% block sidenav %}
+
+{% endblock %}  {% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">{{signature.key_signature}} {{signature.name_signature}}</h1>
+        <h2>Descripción: {{signature.description_signature}} </h2>
+        <h2>Malla: {{signature.program}} </h2>
+    </div>
+</div>
+{% endblock %}

@@ -1,15 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Student,Programme,Enrolled,Inscription
+from .models import Student,Programme,Enrolled,Inscription,Instance_Signature,Signature,Teacher,Status_Inscription
 from django.core import serializers
 # Create your views here.
 
 def index(request):
 
     return render(request, 'index.html', {})
-
-#def login_admin(request):
-#    return render(request, 'admin/login.html', {})
 
 def login_teacher(request):
     return render(request, 'teacher/login.html', {})
@@ -18,10 +15,16 @@ def login_student(request):
     return render(request, 'student/login.html', {})
 
 def dashboard_student(request,idStudent):
-    return render(request, 'student/dashboard.html', {})
+    student=Student.objects.get(pk=idStudent)
+    actual_signature_list=Status_Inscription.objects.all().filter(name_status="Válida",inscription__idStudent=idStudent)
+    print(actual_signature_list)
+    return render(request, 'student/dashboard.html', {"student": student, "signature_list": actual_signature_list})
 
-def dashboard_teacher(request):
-    return render(request, 'teacher/dashboard.html', {})
+def dashboard_teacher(request,idTeacher):
+    teacher=Teacher.objects.get(pk=idTeacher)
+    actual_signature_list=Status_Inscription.objects.all().filter(name_status="Válida",inscription__idInstance_Signature__list_teacher=idTeacher)
+    print(actual_signature_list)
+    return render(request, 'teacher/dashboard.html', {"teacher": teacher, "signature_list": actual_signature_list})
 
 def dashboard_admin(request):
     return render(request, 'admin/dashboard.html', {}) 
@@ -30,22 +33,25 @@ def courses_teacher(request):
     return render(request, 'teacher/courses.html', {})
 
 def courses_student(request,idStudent):
-    instance_signature_list=Inscription.objects.all().filter(idStudent=idStudent).instance_signature
-   # matriculas=students.Programme.all()
- #   print(students.Enrolled.all())
+    student=Student.objects.get(pk=idStudent)     
+    instance_signature_list=Instance_Signature.objects.all().filter(inscriptions=idStudent)
+
+    print(instance_signature_list)
     return render(request,'student/courses.html', {"signature_list": instance_signature_list})
+
+def courses_teacher(request,idTeacher):
+    teacher=Teacher.objects.get(pk=idTeacher)     
+    instance_signature_list=Instance_Signature.objects.all().filter(list_teacher=idTeacher)
+    print(instance_signature_list)
+    return render(request,'teacher/courses.html', {"signature_list": instance_signature_list})
 
 def student(request,idStudent):
     student=Student.objects.get(pk=idStudent)
-   # matriculas=students.Programme.all()
- #   print(students.Enrolled.all())
     print(student)
     return render(request,'student/profile.html', {"student": student})
 
 def profile_student(request,idStudent):
     student=Student.objects.get(pk=idStudent)
-   # matriculas=students.Programme.all()
- #   print(students.Enrolled.all())
     print(student)
     return render(request,'student/profile.html', {"student": student})
 """
@@ -63,6 +69,7 @@ def equipo(request,idEquipo):
     return render(request,'inventario/equipo.html',{"equipo": equipo, "atributos":atributos, "listaincidencia":listaincidencia})
 """
 
-def asignature_detail(request, pk):
-
-    return render(request, 'teacher/asignature.html', {})
+def signature_detail(request,idSignature):
+    signature=Signature.objects.get(pk=idSignature)
+    print(signature)
+    return render(request,'signature.html', {"signature": signature})

@@ -1,6 +1,4 @@
-{% extends 'base/dashboard.html' %} 
-
-{% block sidenav %}
+{% extends 'base/dashboard.html' %} {% block sidenav %}
 <ul class="nav nav-pills flex-column">
     <li class="nav-item">
         <a class="nav-link active" href="/student/dashboard">Inicio</a>
@@ -12,35 +10,49 @@
         <a class="nav-link" href="/student/profile">Perfil</a>
     </li>
 </ul>
-{% endblock %} 
-
-{% block content %}
+{% endblock %} {% block content %}
 <h1>Bienvenido estudiante</h1>
 
 <section class="row text-center placeholders">
-    <div class="col-6 col-sm-3 placeholder">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-            alt="Generic placeholder thumbnail">
-        <h4>Label</h4>
-        <div class="text-muted">Something else</div>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">{{student.first_name_student}} {{student.last_name_student}} </h1>
+            <h2>RUT: {{student.rut_student}} </h2>
+            <h2>Telefono: {{student.phone_student}} </h2>
+            <h2>Email: {{student.email_student}} </h2>
+            <h2>Direccion: {{student.address_student}} </h2>
+        </div>
     </div>
-    <div class="col-6 col-sm-3 placeholder">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-            alt="Generic placeholder thumbnail">
-        <h4>Label</h4>
-        <span class="text-muted">Something else</span>
-    </div>
-    <div class="col-6 col-sm-3 placeholder">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-            alt="Generic placeholder thumbnail">
-        <h4>Label</h4>
-        <span class="text-muted">Something else</span>
-    </div>
-    <div class="col-6 col-sm-3 placeholder">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-            alt="Generic placeholder thumbnail">
-        <h4>Label</h4>
-        <span class="text-muted">Something else</span>
+</section>
+<section class="row text-center placeholders">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Lista de asignaturas Actuales</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sigla</th>
+                        <th>Nombre</th>
+                        <th>Paralelo</th>
+                        <th>Año</th>
+                        <th>Descripción</th>
+                        <th>Ficha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for signature in signature_list %}
+                    <tr>
+                        <th scope="row">{{ signature.inscription.idInstance_Signature.signature.key_signature}}</th>
+                        <td>{{signature.inscription.idInstance_Signature.signature.name_signature }}</td>
+                        <td>{{ signature.inscription.idInstance_Signature.parallel }}</td>
+                        <td>{{ signature.inscription.idInstance_Signature.year }}</td>
+                        <td>{{ signature.inscription.idInstance_Signature.signature.description_signature }}</td>
+                        <td><a href="/signature/{{ signature.inscription.idInstance_Signature.signature.id }}">Ver ficha</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>
 {% endblock %}
